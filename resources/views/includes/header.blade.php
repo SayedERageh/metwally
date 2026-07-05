@@ -1,70 +1,157 @@
-<header id="header" class="header d-flex align-items-center fixed-top" dir="rtl">
-  <div class="header-container container-fluid bg-light container-xl position-relative d-flex align-items-center justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3" dir="rtl">
 
-    <!-- LOGO -->
-    <a href="{{ route('home') }}" class="logo d-flex align-items-center ms-auto ms-xl-0">
-      <img src="{{ asset('assets/img/logo.png') }}" alt="شركة الرحمن" style="height: 45px;">
-    </a>
+    <div class="container">
 
-    <!-- NAV -->
-    <nav id="navmenu" class="navmenu bg-light" dir="rtl">
-
-      <ul>
-
-        <li>
-          <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
-            الرئيسية
-          </a>
-        </li>
-
-        <li>
-          <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">
-            من نحن
-          </a>
-        </li>
-
-   
-<li class="dropdown">
-  <a href="{{ route('services.index') }}" class="{{ request()->routeIs('services.*') ? 'active' : '' }}">
-    <span>الخدمات</span>
-    <i class="bi bi-chevron-down"></i>
-  </a>
-
-  <ul>
-    @foreach($services ?? [] as $service)
-      <li>
-        <a href="{{ route('services.show', $service->slug) }}">
-          {{ $service->title }}
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold fs-3 text-primary " href="/">
+            <i class="fas fa-bolt me-2"></i>
+            متولي الكتريك
         </a>
-      </li>
-    @endforeach
-  </ul>
-</li>
 
-        <li>
-          <a href="{{ route('posts.index') }}" class="{{ request()->routeIs('posts.*') ? 'active' : '' }}">
+        <!-- Mobile -->
+        <button class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav mx-auto align-items-lg-center">
+
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+           href="{{ route('home') }}">
+            الرئيسية
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
+           href="{{ route('about') }}">
+            من نحن
+        </a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle {{ request()->routeIs('services.*') ? 'active' : '' }}"
+           href="{{ route('services.index') }}"
+           data-bs-toggle="dropdown">
+            الخدمات
+        </a>
+
+        <ul class="dropdown-menu text-end">
+
+            @foreach($services ?? [] as $service)
+                <li>
+                    <a class="dropdown-item"
+                       href="{{ route('services.show', $service->slug) }}">
+                        {{ $service->title }}
+                    </a>
+                </li>
+            @endforeach
+
+        </ul>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('products') ? 'active' : '' }}"
+           href="{{ route('products') }}">
+            المنتجات
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('posts.*') ? 'active' : '' }}"
+           href="{{ route('posts.index') }}">
             المقالات
-          </a>
-        </li>
+        </a>
+    </li>
 
-        <li>
-          <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
+           href="{{ route('contact') }}">
             تواصل معنا
-          </a>
-        </li>
+        </a>
+    </li>
 
-      </ul>
+</ul>
 
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+            <!-- Cart -->
+            <div class="d-flex align-items-center">
 
-    <!-- CTA BUTTONS -->
-    <div class="d-flex gap-2">
-      <a href="https://wa.me/966551689585" class="btn-getstarted" href="#contact">
-      تواصل عبر واتساب
-      </a>
+                <button
+                    class="btn cart-btn position-relative"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#cartOffcanvas">
+
+                    <i class="fas fa-shopping-cart"></i>
+
+                    <span id="cart-badge"
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style="display:none;">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
+</nav>
+<style>
+    .navbar{
+    backdrop-filter: blur(10px);
+}
 
-  </div>
-</header>
+.navbar-brand{
+    letter-spacing:.5px;
+}
+
+.nav-link{
+    color:#333 !important;
+    font-weight:600;
+    padding:.7rem 1rem !important;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    color:#ffffff !important;
+    background:#1e7bd8;
+}
+
+.cart-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:14px;
+    background:#078bff;
+    color:#222;
+    font-size:20px;
+    transition:.3s;
+}
+
+.cart-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(7, 181, 255, 0.35);
+}
+
+.offcanvas{
+    width:380px !important;
+}
+
+.offcanvas-header{
+    background:#fff;
+}
+
+.offcanvas-title{
+    font-weight:700;
+}
+</style>

@@ -11,7 +11,7 @@
   <!-- Favicons -->
   <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
   <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -95,7 +95,56 @@
 
   <!-- Preloader -->
   <div id="preloader"></div>
+<a href="javascript:void(0)" onclick="openCart()" class="cart-floating">
+    <i class="bi bi-cart3"></i>
+    <span id="cart-count">0</span>
+</a>
+<style>
+    .cart-floating{
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 
+    width: 60px;
+    height: 60px;
+
+    background: #007bff;
+    color: #fff;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    text-decoration: none;
+
+    z-index: 99999;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+
+#cart-count{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    width: 22px;
+    height: 22px;
+
+    background: red;
+    color: #fff;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+}
+</style>
   <!-- Vendor JS Files -->
   <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>

@@ -8,7 +8,22 @@
 @endsection
 
 @section('content')
-
+ <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-bg-2.jpg);">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">المقــالات</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">posts</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">{{ $post->title }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
 <main class="main" dir="rtl">
 
 <!-- PAGE HEADER -->
@@ -76,6 +91,9 @@
                      style="width:100%; max-height:400px; object-fit:cover;">
               @endif
 
+         
+
+            </div>
 
           @endforeach
     <div class="article-content p-2 p-md-3">
@@ -194,12 +212,12 @@
 
           <div class="card-body">
 
-            <h1>
+            <h6>
               <a href="{{ route('posts.show', $item->slug) }}"
                  class="text-dark text-decoration-none">
                 {{ $item->title }}
               </a>
-            </h1>
+            </h6>
 
           </div>
 

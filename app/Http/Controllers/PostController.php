@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 
 use Illuminate\Http\Request;
-class PostController extends Controller
+class PostController 
 {
 public function index(Request $request)
 {

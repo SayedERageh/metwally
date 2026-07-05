@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductCategory;
 use App\Models\Service;
+use App\Models\Slider;
+use Illuminate\Routing\Controller;
 
 class HomeController extends Controller
 {
@@ -10,6 +13,16 @@ class HomeController extends Controller
     {
         $services = Service::latest()->take(6)->get();
 
-        return view('pages.home', compact('services'));
+        $categories = ProductCategory::all();
+
+        $sliders = Slider::where('active', true)
+            ->latest()
+            ->get();
+
+        return view('pages.home', compact(
+            'services',
+            'categories',
+            'sliders'
+        ));
     }
 }

@@ -10,8 +10,8 @@
   <div class="container section-title" data-aos="fade-up">
     <h2>من نحن؟</h2>
     <p>
-      في الرحمن .. نحن لا نعزل الأسطح فقط، بل نحمي منزلك واستثمارك من أخطر التحديات المناخية.
-      نقدم حلول عزل احترافية تضمن لك الراحة والأمان على المدى الطويل.
+      في <strong>متولي الكتريك</strong> نوفر لعملائنا أفضل الخلاطات والغسالات وقطع الغيار الأصلية،
+      مع الالتزام بالجودة والأسعار المناسبة وخدمة عملاء متميزة تضمن تجربة شراء موثوقة.
     </p>
   </div><!-- End Section Title -->
 
@@ -21,20 +21,20 @@
 
       <div class="col-lg-5">
         <div class="about-img">
-          <img src="assets/img/about-portrait.jpg" class="img-fluid" alt="شركة عزل اسطح وخزانات">
+          <img src="assets/img/aqar.png" class="img-fluid" alt="متولي الكتريك">
         </div>
       </div>
 
       <div class="col-lg-7">
         <h3 class="pt-0 pt-lg-5">
-          شركة الرحمن لخدمات العزل المتكاملة هي كيان سعودي متخصص يضع معايير جديدة في حماية المباني
+          متولي الكتريك وجهتك الموثوقة للأجهزة الكهربائية وقطع الغيار الأصلية بأعلى جودة وأفضل الأسعار.
         </h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
-          <li><a class="nav-link active" data-bs-toggle="pill" href="#about-tab1">عن الشركة</a></li>
+          <li><a class="nav-link active" data-bs-toggle="pill" href="#about-tab1">عن المتجر</a></li>
           <li><a class="nav-link" data-bs-toggle="pill" href="#about-tab2">رؤيتنا</a></li>
-          <li><a class="nav-link" data-bs-toggle="pill" href="#about-tab3">مميزاتنا</a></li>
+          <li><a class="nav-link" data-bs-toggle="pill" href="#about-tab3">لماذا نحن؟</a></li>
         </ul><!-- End Tabs -->
 
         <!-- Tab Content -->
@@ -44,32 +44,31 @@
           <div class="tab-pane fade show active" id="about-tab1">
 
             <p class="fst-italic">
-              نحن لا نقدم خدمات عزل تقليدية، بل نصمم منظومات حماية متكاملة تضمن استدامة العقار
-              وسلامة من فيه وفقًا لأعلى مواصفات كود البناء السعودي.
+              نقدم مجموعة متنوعة من الخلاطات والغسالات وقطع الغيار الأصلية، مع الحرص على توفير منتجات عالية الجودة تلبي احتياجات جميع العملاء.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>عزل أسطح مائي وحراري بأعلى جودة</h4>
+              <h4>خلاطات منزلية عالية الجودة</h4>
             </div>
             <p>
-              نحمي منزلك من تسربات المياه وحرارة الشمس مما يطيل عمر المبنى ويقلل تكاليف الصيانة.
+              نوفر أحدث موديلات الخلاطات التي تجمع بين الأداء القوي والتصميم العصري لتناسب جميع الاستخدامات.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>حلول عزل متكاملة للخزانات والحمامات</h4>
+              <h4>غسالات من أفضل الماركات</h4>
             </div>
             <p>
-              نضمن لك بيئة صحية وآمنة خالية من الرطوبة والتسربات التي تؤثر على سلامة البناء.
+              تشكيلة واسعة من الغسالات بمواصفات مختلفة تناسب جميع الاحتياجات والميزانيات.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>تقنيات حديثة ومواد معتمدة</h4>
+              <h4>قطع غيار أصلية</h4>
             </div>
             <p>
-              نستخدم أحدث المواد والتقنيات المعتمدة لتحقيق أفضل أداء ممكن في جميع مشاريعنا.
+              نوفر قطع غيار أصلية لضمان الحفاظ على كفاءة الأجهزة وإطالة عمرها الافتراضي.
             </p>
 
           </div><!-- End Tab 1 -->
@@ -78,24 +77,23 @@
           <div class="tab-pane fade" id="about-tab2">
 
             <p class="fst-italic">
-              رؤيتنا أن نكون الخيار الأول في مجال العزل داخل المملكة من خلال تقديم جودة حقيقية
-              تبني الثقة مع عملائنا.
+              نسعى لأن يكون متولي الكتريك الخيار الأول لكل من يبحث عن الجودة والثقة في عالم الأجهزة الكهربائية.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>الجودة قبل أي شيء</h4>
+              <h4>تقديم أفضل جودة</h4>
             </div>
             <p>
-              نركز على تنفيذ كل مشروع بأعلى مستوى من الدقة والاحترافية لضمان نتائج تدوم لسنوات.
+              نختار منتجاتنا بعناية لضمان أعلى مستويات الجودة والأداء.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>راحة العميل أولويتنا</h4>
+              <h4>رضا العميل أولويتنا</h4>
             </div>
             <p>
-              نحرص على تقديم تجربة مريحة وسلسة بداية من المعاينة وحتى التسليم النهائي.
+              نلتزم بتقديم خدمة متميزة ومساعدة العملاء في اختيار المنتج المناسب.
             </p>
 
             <div class="d-flex align-items-center mt-4">
@@ -103,7 +101,7 @@
               <h4>تطوير مستمر</h4>
             </div>
             <p>
-              نتابع أحدث تقنيات العزل عالميًا لنقدم حلول متطورة تواكب احتياجات السوق.
+              نحرص على توفير أحدث المنتجات وقطع الغيار لتلبية احتياجات السوق باستمرار.
             </p>
 
           </div><!-- End Tab 2 -->
@@ -112,31 +110,31 @@
           <div class="tab-pane fade" id="about-tab3">
 
             <p class="fst-italic">
-              ما يميزنا ليس فقط الخدمة بل النتائج التي يراها عملاؤنا على أرض الواقع.
+              ثقة عملائنا هي أكبر دليل على جودة منتجاتنا وخدماتنا.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>خبرة في السوق السعودي</h4>
+              <h4>منتجات أصلية 100%</h4>
             </div>
             <p>
-              نفهم طبيعة المناخ القاسي ونقدم حلول مناسبة لكل حالة.
+              جميع المنتجات وقطع الغيار لدينا أصلية ومضمونة الجودة.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>التزام بالمواعيد</h4>
+              <h4>أسعار تنافسية</h4>
             </div>
             <p>
-              ننجز المشاريع في الوقت المحدد دون تأخير مع الحفاظ على أعلى جودة.
+              نقدم أفضل الأسعار مع عروض وخصومات مستمرة على العديد من المنتجات.
             </p>
 
             <div class="d-flex align-items-center mt-4">
               <i class="bi bi-check2"></i>
-              <h4>ضمان يصل إلى 10 سنوات</h4>
+              <h4>خدمة عملاء متميزة</h4>
             </div>
             <p>
-              نقدم ضمان حقيقي يعكس ثقتنا في جودة التنفيذ وراحة عملائنا.
+              فريقنا جاهز دائمًا للإجابة على استفساراتك ومساعدتك في اختيار المنتج المناسب.
             </p>
 
           </div><!-- End Tab 3 -->
@@ -149,39 +147,36 @@
 
   </div>
 
-</section><!-- /About Section -->
-
+</section>
 
 <section class="section bg-light text-center">
 
   <div class="container">
     <div class="row g-5 justify-content-center">
 
-      <!-- فلسفتنا -->
+      <!-- منتجاتنا -->
       <div class="col-lg-6 col-md-6">
         <div class="circle-wrap">
-            <div class="dot"></div>
+          <div class="dot"></div>
           <div class="circle-card">
-            <div class="icon"><i class="bi bi-lightbulb"></i></div>
-            <h4>فلسفتنا</h4>
+            <div class="icon"><i class="bi bi-shop"></i></div>
+            <h4>أجهزة كهربائية</h4>
             <p>
-              بدأنا لأننا رأينا الكثير من الوعود والقليل من الإتقان…
-              ورأينا بيوت تُبنى بشقاء العمر ثم تعاني بسبب قطرة ماء أو شمس لا ترحم.
+              نوفر مجموعة متنوعة من الخلاطات والغسالات والأجهزة المنزلية من أفضل العلامات التجارية بجودة مضمونة.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- رسالتنا -->
+      <!-- قطع الغيار -->
       <div class="col-lg-6 col-md-6">
         <div class="circle-wrap">
-            <div class="dot"></div>
+          <div class="dot"></div>
           <div class="circle-card">
-            <div class="icon"><i class="bi bi-bullseye"></i></div>
-            <h4>رسالتنا</h4>
+            <div class="icon"><i class="bi bi-gear-fill"></i></div>
+            <h4>قطع غيار أصلية</h4>
             <p>
-              تقديم حلول هندسية ذكية توازن بين كفاءة الأداء وترشيد الاستهلاك
-              لنكون الشريك الموثوق في مجال العزل.
+              جميع قطع الغيار لدينا أصلية ومتوافقة مع مختلف الموديلات لضمان أفضل أداء وعمر أطول للجهاز.
             </p>
           </div>
         </div>
@@ -190,29 +185,30 @@
       <!-- لماذا نحن -->
       <div class="col-lg-6 col-md-6">
         <div class="circle-wrap">
-            <div class="dot"></div>
+          <div class="dot"></div>
           <div class="circle-card">
-            <div class="icon"><i class="bi bi-shield-check"></i></div>
-            <h4>لماذا نحن؟</h4>
+            <div class="icon"><i class="bi bi-patch-check-fill"></i></div>
+            <h4>لماذا متولي الكتريك؟</h4>
             <p>
-              مواد معتمدة – فريق متخصص – اختبار 100% – ضمان يصل إلى 10 سنوات.
+              جودة مضمونة، أسعار تنافسية، خدمة عملاء مميزة، وتوفير أحدث المنتجات وقطع الغيار في مكان واحد.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- رؤيتنا -->
+      <!-- تواصل معنا -->
       <div class="col-lg-6 col-md-6">
         <div class="circle-wrap">
-            <div class="dot"></div>
+          <div class="dot"></div>
           <div class="circle-card">
-            <div class="icon"><i class="bi bi-eye"></i></div>
-            <h4>رؤيتنا</h4>
+            <div class="icon"><i class="bi bi-headset"></i></div>
+            <h4>خدمة العملاء</h4>
             <p>
-              الأمانة والإتقان أساس عملنا لنكون الخيار الأول في العزل داخل المملكة.
+              فريقنا جاهز دائمًا لمساعدتك في اختيار المنتج المناسب والإجابة على جميع استفساراتك.
             </p>
-            <a href="tel:+966551689585" class="btn btn-primary btn-sm mt-2">
-              تواصل معنا
+
+            <a href="tel:+201022558536" class="btn btn-primary btn-sm mt-2">
+              اتصل بنا الآن
             </a>
           </div>
         </div>
@@ -348,29 +344,6 @@
 }
 </style>
 
- <!-- Hero Section -->
-    <section id="hero" class="hero section">
-
-      <div dir="rtl" class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
-        <img src="{{ asset('assets/img/hero-img.png') }}" class="img-fluid animated" alt="">
-          <h1>عزل الأسطح <span>درع الحماية الأقوى</span></h1>
-
-  <p>
-    لمبناك يبدأ من اختيارك للشريك الصحيح.<br>
-    نقدم حلول عزل هندسية متكاملة تضمن استدامة مبناك وقيمته العقارية<br>
-    بضمان حقيقي يصل إلى 10 سنوات.
-  </p>
-        <div class="d-flex" dir="rtl">
-    <a href="tel:+201000000000" class="btn-watch-video d-flex align-items-center">
-              <span>اتصل بنا</span>
-
-      <i class="bi bi-telephone"></i>
-    </a>
-        <a href="#contact" class="btn-get-started scrollto">تواصل معنا الآن</a>
-
-  </div>
-      </div>
-
-    </section><!-- /Hero Section -->
+ 
 
 @endsection
