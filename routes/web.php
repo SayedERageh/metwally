@@ -1,53 +1,111 @@
 <?php
 
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
+/*
+|--------------------------------------------------------------------------
+| Home
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+/*
+|--------------------------------------------------------------------------
+| Pages
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/من-نحن', function () {
-    return view('pages.about');
-})->name('about');
-Route::get('/تواصل-معنا', function () {
-    return view('pages.contact');
-})->name('contact');
+Route::view('/من-نحن', 'pages.about')->name('about');
+Route::view('/تواصل-معنا', 'pages.contact')->name('contact');
 
+/*
+|--------------------------------------------------------------------------
+| Shop
+|--------------------------------------------------------------------------
+*/
 
-// ShopController
-Route::get('/products', [ShopController::class, 'products'])
-    ->name('products');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 
-Route::get('/products/{id}', [ShopController::class, 'productDetails'])
-    ->name('product.details');
-
-// 🔥 Services Routes
-Route::get('/الخدمات', [ServiceController::class, 'index'])->name('services.index');
-
-Route::get('/الخدمات/{slug}', [ServiceController::class, 'show'])->name('services.show');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 
-Route::get('/المقالات', [PostController::class, 'index'])->name('posts.index');
+Route::get('/mini-cart', [CartController::class, 'miniCart'])
+    ->name('cart.mini');
+    Route::get('/cart/data', [CartController::class, 'data'])
+    ->name('cart.data');
+/*
 
-Route::get('/المقالات/{slug}', [PostController::class, 'show'])->name('posts.show');
+|---------------------------    -----------------------------------------------
+| Cart
+|--------------------------------------------------------------------------
+*/
 
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::prefix('cart')->name('cart.')->group(function () {
 
+    Route::get('/', [CartController::class, 'index'])->name('index');
 
-// cart
+    Route::post('/add/{id}', [CartController::class, 'add'])->name('add');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/increase/{id}', [CartController::class, 'increase'])->name('increase');
 
-Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/decrease/{id}', [CartController::class, 'decrease'])->name('decrease');
 
-Route::post('/cart/increase/{id}', [CartController::class, 'increase'])->name('cart.increase');
+    Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('remove');
 
-Route::post('/cart/decrease/{id}', [CartController::class, 'decrease'])->name('cart.decrease');
+});
 
-Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+/*
+|--------------------------------------------------------------------------
+| Checkout
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/checkout', [CheckoutController::class, 'index'])
+    ->name('checkout.index');
+
+Route::post('/checkout', [CheckoutController::class, 'store'])
+    ->name('checkout.store');
+
+Route::get('/checkout/success/{order}', [CheckoutController::class, 'success'])
+    ->name('checkout.success');
+/*
+|--------------------------------------------------------------------------
+| Services
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/الخدمات', [ServiceController::class, 'index'])
+    ->name('services.index');
+
+Route::get('/الخدمات/{slug}', [ServiceController::class, 'show'])
+    ->name('services.show');
+
+/*
+|--------------------------------------------------------------------------
+| Posts
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/المقالات', [PostController::class, 'index'])
+    ->name('posts.index');
+
+Route::get('/المقالات/{slug}', [PostController::class, 'show'])
+    ->name('posts.show');
+
+/*
+|--------------------------------------------------------------------------
+| Contact
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');

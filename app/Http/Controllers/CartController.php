@@ -3,106 +3,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\CartService;
 
-class CartController 
+class CartController
 {
-  public function index()
-{
-    $cart = session('cart', []);
+    protected CartService $cart;
 
-    // لو الطلب AJAX → ارجع JSON
-    if (request()->expectsJson()) {
-        $total = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
-        return response()->json([
-            'success' => true,
-            'count'   => count($cart),
-            'total'   => $total,
-            'cart'    => array_values($cart),
-        ]);
+    public function __construct(CartService $cart)
+    {
+        $this->cart = $cart;
     }
 
-    return view('shop.cart', compact('cart'));
+public function miniCart()
+{
+    return view('shop.partials.mini-cart', [
+        'cartItems' => $this->cart->getCart(),
+        'cartTotal' => $this->cart->total(),
+        'cartCount' => $this->cart->count(),
+    ]);
 }
-    public function add($id)
+public function data()
+{
+    return response()->json([
+        'items' => array_values($this->cart->getCart()),
+        'count' => $this->cart->count(),
+        'total' => $this->cart->total(),
+    ]);
+}
+
+    public function index()
     {
-        $product = Product::findOrFail($id);
-
-        $cart = session('cart', []);
-
-        if (isset($cart[$id])) {
-
-            $cart[$id]['quantity']++;
-
-        } else {
-
-            $cart[$id] = [
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'image' => $product->images[0] ?? null,
-                'quantity' => 1,
-            ];
-        }
-
-        session()->put('cart', $cart);
-
-        return $this->cartResponse();
-    }
-
-    public function increase($id)
-    {
-        $cart = session('cart', []);
-
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        }
-
-        session()->put('cart', $cart);
-
-        return $this->cartResponse();
-    }
-
-    public function decrease($id)
-    {
-        $cart = session('cart', []);
-
-        if (isset($cart[$id])) {
-
-            $cart[$id]['quantity']--;
-
-            if ($cart[$id]['quantity'] <= 0) {
-                unset($cart[$id]);
-            }
-        }
-
-        session()->put('cart', $cart);
-
-        return $this->cartResponse();
-    }
-
-    public function remove($id)
-    {
-        $cart = session('cart', []);
-
-        unset($cart[$id]);
-
-        session()->put('cart', $cart);
-
-        return $this->cartResponse();
-    }
-
-    private function cartResponse()
-    {
-        $cart = session('cart', []);
-
-        $total = collect($cart)
-            ->sum(fn ($item) => $item['price'] * $item['quantity']);
-
-        return response()->json([
-            'success' => true,
-            'count' => count($cart),
-            'total' => $total,
-            'cart' => array_values($cart),
+        return view('shop.cart', [
+            'cart' => $this->cart->getCart(),
+            'total' => $this->cart->total(),
         ]);
     }
+public function add($id)
+{
+    $product = Product::findOrFail($id);
+
+    $this->cart->add($product);
+
+    return response()->json([
+        'success' => true,
+        'count'   => $this->cart->count(),
+        'total'   => $this->cart->total(),
+    ]);
+}
+    public function increase($id)
+{
+    $this->cart->increase($id);
+
+    return response()->json([
+        'success' => true
+    ]);
+}
+   public function decrease($id)
+{
+    $this->cart->decrease($id);
+
+    return response()->json([
+        'success' => true
+    ]);
+}
+
+public function remove($id)
+{
+    $this->cart->remove($id);
+
+    return response()->json([
+        'success' => true
+    ]);
+}
 }

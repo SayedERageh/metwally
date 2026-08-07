@@ -13,6 +13,7 @@ class Product extends Model
         'sale_price',
         'quantity',
         'images',
+        'slug',
         'category_id',
         'is_new',
         'is_featured',

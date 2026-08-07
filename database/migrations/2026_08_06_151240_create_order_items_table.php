@@ -23,16 +23,17 @@ return new class extends Migration
             ->constrained()
             ->cascadeOnDelete();
 
-        $table->decimal('price', 10, 2);
+        $table->string('product_name');
+
+        $table->decimal('price',10,2);
 
         $table->integer('quantity');
 
-        $table->decimal('total', 10, 2);
+        $table->decimal('total',10,2);
 
         $table->timestamps();
     });
 }
-
     /**
      * Reverse the migrations.
      */

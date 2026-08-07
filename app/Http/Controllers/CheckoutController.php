@@ -3,63 +3,246 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\ShippingRate;
+use App\Services\CartService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController 
 {
-    public function index()
-    {
-        $cart = session('cart', []);
 
-        if (empty($cart)) {
-            return redirect()->route('cart');
+    public function index(CartService $cart)
+    {
+
+        $cartItems = $cart->getCart();
+
+        if(empty($cartItems)){
+            return redirect('/cart');
         }
 
-        $total = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
 
-        return view('shop.checkout', compact('cart', 'total'));
-    }
+        return view('shop.checkout', [
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'customer_name' => 'required|string|max:100',
-            'phone'         => 'required|string|max:20',
-            'address'       => 'required|string|max:255',
-            'notes'         => 'nullable|string|max:500',
+            'cartItems' => $cartItems,
+
+            'subtotal' => $cart->total(),
+
+            'shippingRates' => ShippingRate::all(),
+
         ]);
 
-        $cart = session('cart', []);
+    }
 
-        if (empty($cart)) {
-            return redirect()->route('cart');
+
+public function store(Request $request, CartService $cart)
+{
+
+    $request->validate([
+
+        'first_name'=>'required',
+        'phone'=>'required',
+        'governorate'=>'required',
+        'city'=>'required',
+        'address'=>'required',
+        'payment_method'=>'required',
+
+    ]);
+
+
+
+    $cartItems = $cart->getCart();
+
+
+    if(empty($cartItems)){
+
+        return redirect('/cart');
+
+    }
+
+
+
+    DB::beginTransaction();
+
+
+
+    try {
+
+
+
+        $shipping = $request->shipping ?? 0;
+
+
+        $subtotal = $cart->total();
+
+
+        $total = $subtotal + $shipping;
+
+
+
+        // إنشاء رقم الطلب
+
+        $orderNumber = 
+        'MTW-'.date('Ymd').'-'.str_pad(
+            Order::count()+1,
+            6,
+            '0',
+            STR_PAD_LEFT
+        );
+
+
+
+
+        // رفع صورة التحويل
+
+        $paymentImage = null;
+
+
+        if($request->hasFile('payment_image')){
+
+
+            $paymentImage = 
+            $request->file('payment_image')
+            ->store('orders/payments','public');
+
+
         }
 
-        $total = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
+
+
+
 
         // إنشاء الطلب
+
         $order = Order::create([
-            'customer_name' => $request->customer_name,
-            'phone'         => $request->phone,
-            'address'       => $request->address,
-            'notes'         => $request->notes,
-            'total'         => $total,
-            'status'        => 'pending',
+
+
+            'order_number'=>$orderNumber,
+
+
+            'first_name'=>$request->first_name,
+
+            'last_name'=>$request->last_name,
+
+
+            'email'=>$request->email,
+
+
+            'phone'=>$request->phone,
+
+
+'country'      => 'مصر',
+'governorate'  => $request->governorate,
+
+            'city'=>$request->city,
+
+
+            'area'=>$request->area,
+
+
+            'address'=>$request->address,
+
+
+            'postal_code'=>$request->postal_code,
+
+
+
+            'subtotal'=>$subtotal,
+
+
+            'shipping'=>$shipping,
+
+
+            'discount'=>0,
+
+
+            'total'=>$total,
+
+
+
+            'payment_method'=>$request->payment_method,
+
+
+            'payment_image'=>$paymentImage,
+
+
+            'status'=>'pending',
+
+
         ]);
 
-        // إضافة المنتجات
-        foreach ($cart as $item) {
-            $order->items()->create([
-                'product_id' => $item['id'],
-                'price'      => $item['price'],
-                'quantity'   => $item['quantity'],
-                'total'      => $item['price'] * $item['quantity'],
+
+
+
+
+        // حفظ المنتجات
+
+
+        foreach($cartItems as $item){
+
+
+            OrderItem::create([
+
+
+                'order_id'=>$order->id,
+
+
+                'product_id'=>$item['id'],
+
+
+                'product_name'=>$item['name'],
+
+
+                'price'=>$item['price'],
+
+
+                'quantity'=>$item['quantity'],
+
+
+                'total'=>
+                $item['price'] * $item['quantity'],
+
+
             ]);
+
         }
 
-        // مسح السلة
-        session()->forget('cart');
 
-        return redirect()->route('order.show', $order);
+
+
+        DB::commit();
+
+
+
+        // تفريغ السلة
+
+        $cart->clear();
+
+
+
+        return redirect()
+        ->route('checkout.success',$order);
+
+
+
+    } catch(\Exception $e){
+
+
+
+        DB::rollBack();
+dd($e->getMessage());
+
+        return back()
+        ->with('error',$e->getMessage());
+
+
     }
+
+
+}
+public function success(Order $order)
+{
+    return view('shop.success', compact('order'));
+}
+
 }

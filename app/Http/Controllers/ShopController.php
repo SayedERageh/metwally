@@ -3,33 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Category;
-use App\Models\ProductCategory;
-use Illuminate\Http\Request;
 
 class ShopController 
 {
-    // صفحة جميع المنتجات
-    public function products(Request $request)
+    public function index()
     {
-        $categories = ProductCategory::all();
+        $products = Product::where('status', true)
+            ->latest()
+            ->paginate(12);
 
-        $products = Product::query();
-
-        if ($request->category) {
-            $products->where('category_id', $request->category);
-        }
-
-        $products = $products->latest()->get();
-
-        return view('shop.products', compact('products', 'categories'));
+        return view('shop.index', compact('products'));
     }
 
-    // صفحة تفاصيل المنتج
-    public function productDetails($id)
+    public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('category')->findOrFail($id);
 
-        return view('shop.product-details', compact('product'));
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->where('status', true)
+            ->take(4)
+            ->get();
+
+        return view('shop.show', compact(
+            'product',
+            'relatedProducts'
+        ));
     }
 }

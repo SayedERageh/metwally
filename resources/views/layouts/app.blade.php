@@ -95,56 +95,32 @@
 
   <!-- Preloader -->
   <div id="preloader"></div>
-<a href="javascript:void(0)" onclick="openCart()" class="cart-floating">
-    <i class="bi bi-cart3"></i>
-    <span id="cart-count">0</span>
-</a>
-<style>
-    .cart-floating{
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+<div class="position-fixed top-0 end-0 p-3" style="z-index:9999">
 
-    width: 60px;
-    height: 60px;
+    <div id="cartToast"
+         class="toast align-items-center text-bg-success border-0"
+         role="alert">
 
-    background: #007bff;
-    color: #fff;
+        <div class="d-flex">
 
-    border-radius: 50%;
+            <div class="toast-body">
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+                <i class="fas fa-check-circle ms-2"></i>
 
-    font-size: 24px;
-    text-decoration: none;
+                تم إضافة المنتج إلى السلة
 
-    z-index: 99999;
-    box-shadow: 0 5px 15px rgba(0,0,0,.2);
-}
+            </div>
 
-#cart-count{
-    position: absolute;
-    top: -5px;
-    right: -5px;
+            <button
+                class="btn-close btn-close-white me-2 m-auto"
+                data-bs-dismiss="toast">
+            </button>
 
-    width: 22px;
-    height: 22px;
+        </div>
 
-    background: red;
-    color: #fff;
+    </div>
 
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 12px;
-}
-</style>
+</div>
   <!-- Vendor JS Files -->
   <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
@@ -156,7 +132,7 @@
 
   <!-- Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
-
+<script src="{{ asset('assets/js/cart.js') }}"></script>
 </body>
 
 </html>
