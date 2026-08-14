@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
     protected $fillable = [
+        'branch_id',
+        'category_id',
         'name',
         'description',
         'price',
@@ -14,7 +17,6 @@ class Product extends Model
         'quantity',
         'images',
         'slug',
-        'category_id',
         'is_new',
         'is_featured',
         'status',
@@ -27,8 +29,13 @@ class Product extends Model
         'status' => 'boolean',
     ];
 
-    public function category()
+    public function branch(): BelongsTo
     {
-        return $this->belongsTo(ProductCategory::class, 'category_id');
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 }

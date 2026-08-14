@@ -34,7 +34,11 @@ Route::view('/تواصل-معنا', 'pages.contact')->name('contact');
 */
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/category/{id}', [ShopController::class, 'category'])
+    ->name('shop.category');
 
+Route::get('/shop/category/{category}/branch/{branch}', [ShopController::class, 'branch'])
+    ->name('shop.branch');
 Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 
