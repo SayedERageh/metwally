@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ShippingRateSeeder::class,
             BranchSeeder::class,
+            EgyptGovernoratesSeeder::class,
         ]);
     }
 }

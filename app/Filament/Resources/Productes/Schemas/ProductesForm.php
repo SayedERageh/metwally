@@ -15,17 +15,38 @@ class ProductesForm
     {
         return $schema
             ->components([
+
                 TextInput::make('name')
                     ->label('اسم المنتج')
+                    ->placeholder('مثال: موتور ثلاجة')
                     ->required()
                     ->maxLength(255),
 
                 Select::make('category_id')
-                    ->label('التصنيف')
+                    ->label('القسم')
                     ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
+                    ->live()
                     ->required(),
+
+                Select::make('branch_id')
+                    ->label('الفرع')
+                    ->relationship(
+                        'branch',
+                        'name',
+                        fn ($query, $get) =>
+                            $query->when(
+                                $get('category_id'),
+                                fn ($query, $categoryId) =>
+                                    $query->where('category_id', $categoryId)
+                            )
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->disabled(fn ($get) => ! $get('category_id'))
+                    ->helperText('اختر القسم أولاً لعرض الفروع التابعة له'),
 
                 TextInput::make('price')
                     ->label('السعر الأصلي')
@@ -54,13 +75,16 @@ class ProductesForm
                     ->label('متاح للبيع')
                     ->default(true),
 
+                TextInput::make('slug')
+                    ->label('الرابط المختصر')
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255),
+
                 RichEditor::make('description')
                     ->label('الوصف')
                     ->columnSpanFull(),
-TextInput::make('slug')
-    ->required()
-    ->unique(ignoreRecord: true)
-   ,
+
                 FileUpload::make('images')
                     ->label('صور المنتج')
                     ->multiple()
@@ -68,6 +92,7 @@ TextInput::make('slug')
                     ->directory('products')
                     ->reorderable()
                     ->columnSpanFull(),
+
             ])
             ->columns(2);
     }

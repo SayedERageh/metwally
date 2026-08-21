@@ -23,10 +23,19 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 | Pages
 |--------------------------------------------------------------------------
 */
+Route::get('/من-نحن', [HomeController::class, 'about'])->name('about');
 
-Route::view('/من-نحن', 'pages.about')->name('about');
 Route::view('/تواصل-معنا', 'pages.contact')->name('contact');
+use App\Models\City;
 
+Route::get('/cities/{governorate}', function ($governorate) {
+
+    return City::where('governorate_id', $governorate)
+        ->where('is_active', true)
+        ->orderBy('name')
+        ->get(['id', 'name']);
+
+})->name('cities.by.governorate');
 /*
 |--------------------------------------------------------------------------
 | Shop

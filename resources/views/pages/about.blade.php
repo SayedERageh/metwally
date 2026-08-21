@@ -3,6 +3,7 @@
 @section('title', 'الصفحة الرئيسية')
 
 @section('content')
+@include('components.carouselabout')
 <!-- About Section -->
 <section id="about" class="about section" dir="rtl">
 

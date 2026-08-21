@@ -16,10 +16,13 @@ class ProductesTable
     {
         return $table
             ->columns([
+
                 ImageColumn::make('images')
                     ->label('الصورة')
                     ->circular()
-                    ->getStateUsing(fn ($record) => $record->images[0] ?? null),
+                    ->getStateUsing(
+                        fn ($record) => $record->images[0] ?? null
+                    ),
 
                 TextColumn::make('name')
                     ->label('اسم المنتج')
@@ -27,12 +30,24 @@ class ProductesTable
                     ->sortable(),
 
                 TextColumn::make('category.name')
-                    ->label('التصنيف')
+                    ->label('القسم')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->badge(),
+
+                TextColumn::make('branch.name')
+                    ->label('الفرع')
+                    ->searchable()
+                    ->sortable()
+                    ->badge(),
 
                 TextColumn::make('price')
-                    ->label('السعر')
+                    ->label('السعر الأصلي')
+                    ->money('EGP')
+                    ->sortable(),
+
+                TextColumn::make('sale_price')
+                    ->label('سعر الخصم')
                     ->money('EGP')
                     ->sortable(),
 
@@ -40,32 +55,36 @@ class ProductesTable
                     ->label('الكمية')
                     ->badge()
                     ->sortable(),
-TextColumn::make('sale_price')
-    ->label('سعر الخصم')
-    ->money('EGP'),
 
-IconColumn::make('is_new')
-    ->label('جديد')
-    ->boolean(),
+                IconColumn::make('is_new')
+                    ->label('جديد')
+                    ->boolean(),
 
-IconColumn::make('is_featured')
-    ->label('مميز')
-    ->boolean(),
+                IconColumn::make('is_featured')
+                    ->label('مميز')
+                    ->boolean(),
 
-IconColumn::make('status')
-    ->label('الحالة')
-    ->boolean(),
+                IconColumn::make('status')
+                    ->label('الحالة')
+                    ->boolean(),
+
                 TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')
                     ->dateTime('Y-m-d')
                     ->sortable(),
+
             ])
+
             ->filters([
+
                 //
+
             ])
+
             ->recordActions([
                 EditAction::make(),
             ])
+
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

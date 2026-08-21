@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Governorate;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ShippingRate;
@@ -13,41 +13,47 @@ class CheckoutController
 {
 
     public function index(CartService $cart)
-    {
+{
+    $cartItems = $cart->getCart();
 
-        $cartItems = $cart->getCart();
-
-        if(empty($cartItems)){
-            return redirect('/cart');
-        }
-
-
-        return view('shop.checkout', [
-
-            'cartItems' => $cartItems,
-
-            'subtotal' => $cart->total(),
-
-            'shippingRates' => ShippingRate::all(),
-
-        ]);
-
+    if (empty($cartItems)) {
+        return redirect('/cart');
     }
+
+    return view('shop.checkout', [
+        'cartItems' => $cartItems,
+        'subtotal' => $cart->total(),
+        'governorates' => Governorate::where('is_active', true)
+            ->with(['cities' => function ($query) {
+                $query->where('is_active', true)
+                    ->orderBy('name');
+            }])
+            ->orderBy('name')
+            ->get(),
+    ]);
+}
 
 
 public function store(Request $request, CartService $cart)
 {
 
-    $request->validate([
+$request->validate([
+    'first_name' => 'required|string|max:100',
+    'last_name' => 'nullable|string|max:100',
+    'phone' => 'required|string|max:30',
+    'email' => 'nullable|email|max:150',
 
-        'first_name'=>'required',
-        'phone'=>'required',
-        'governorate'=>'required',
-        'city'=>'required',
-        'address'=>'required',
-        'payment_method'=>'required',
+    'governorate' => 'required|exists:governorates,id',
+    'city' => 'required|exists:cities,id',
 
-    ]);
+    'area' => 'nullable|string|max:150',
+    'address' => 'required|string|max:500',
+    'postal_code' => 'nullable|string|max:20',
+
+    'payment_method' => 'required|in:cash_on_delivery,vodafone_cash,instapay',
+
+    'payment_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+]);
 
 
 
@@ -70,8 +76,16 @@ public function store(Request $request, CartService $cart)
 
 
 
-        $shipping = $request->shipping ?? 0;
+$governorate = Governorate::where('id', $request->governorate)
+    ->where('is_active', true)
+    ->firstOrFail();
 
+$city = $governorate->cities()
+    ->where('id', $request->city)
+    ->where('is_active', true)
+    ->firstOrFail();
+
+$shipping = $governorate->shipping_price;
 
         $subtotal = $cart->total();
 
@@ -132,9 +146,9 @@ public function store(Request $request, CartService $cart)
 
 
 'country'      => 'مصر',
-'governorate'  => $request->governorate,
+'governorate' => $governorate->name,
 
-            'city'=>$request->city,
+'city' => $city->name,
 
 
             'area'=>$request->area,
