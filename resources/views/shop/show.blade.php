@@ -276,16 +276,15 @@
                             </div>
 
 
-                            <button
-                                type="button"
-                                class="show-add-cart"
-                                data-id="{{ $product->id }}">
+                           <button
+                    type="button"
+                    class="btn add-to-cart product-add-btn"
+                    data-id="{{ $product->id }}">
 
-                                <i class="bi bi-cart3"></i>
+                    <i class="bi bi-cart3"></i>
+                    <span>أضف إلى السلة</span>
 
-                                أضف إلى السلة
-
-                            </button>
+                </button>
 
                         </div>
 
