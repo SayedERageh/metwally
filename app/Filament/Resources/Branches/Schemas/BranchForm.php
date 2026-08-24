@@ -6,6 +6,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 
 class BranchForm
@@ -20,6 +21,14 @@ class BranchForm
                     ->placeholder('مثال: ثرموستات')
                     ->required()
                     ->maxLength(255),
+
+                // اسم القسم
+                Select::make('category_id')
+                    ->label('اسم القسم')
+                    ->relationship('category', 'name')
+                    ->preload()
+                    ->native(false)
+                    ->required(),
 
                 TextInput::make('slug')
                     ->label('الرابط المختصر')
