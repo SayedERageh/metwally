@@ -75,11 +75,7 @@ class ProductesForm
                     ->label('متاح للبيع')
                     ->default(true),
 
-                TextInput::make('slug')
-                    ->label('الرابط المختصر')
-                    ->required()
-                    ->unique(ignoreRecord: true)
-                    ->maxLength(255),
+
 
                 RichEditor::make('description')
                     ->label('الوصف')
